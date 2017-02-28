@@ -163,7 +163,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchBySurnameField.addActionListener(this);
 		searchBySurnameField.setDocument(new JTextFieldLimit(20));
 		searchPanel.add(
-				searchSurname = new JButton(new ImageIcon(new ImageIcon("imgres.png").getImage()
+				searchSurname = new JButton(new ImageIcon(new ImageIcon("imgres.png").getImage() //TODO
 						.getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
 				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
 		searchSurname.addActionListener(this);

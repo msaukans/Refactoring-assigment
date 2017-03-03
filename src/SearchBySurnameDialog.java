@@ -78,7 +78,7 @@ class SearchBySurnameDialog extends JDialog implements ActionListener{
 			this.parent.searchBySurnameField.setText(searchField.getText());
 			this.parent.searchEmployeeBySurname();
 			dispose();// dispose dialog
-		}// end if
+		}
 		// else dispose dialog
 		else if(e.getSource() == cancel)
 			dispose();// dispose dialog

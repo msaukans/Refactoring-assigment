@@ -85,13 +85,13 @@ class SearchByIdDialog extends JDialog implements ActionListener {
 				// search Employee by ID
 				this.parent.searchEmployeeById();
 				dispose();// dispose dialog
-			}// end try
+			}
 			catch (NumberFormatException num) {
 				// display message and set colour to text field if entry is wrong
 				searchField.setBackground(new Color(255, 150, 150));
 				JOptionPane.showMessageDialog(null, "Wrong ID format!");
-			}// end catch
-		}// end if
+			}
+		}
 		// else dispose dialog
 		else if (e.getSource() == cancel)
 			dispose();

@@ -26,10 +26,11 @@ import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
 
-public class EmployeeSummaryDialog extends JDialog implements ActionListener {
+
+class EmployeeSummaryDialog extends JDialog implements ActionListener {
 	// vector with all Employees details
-	Vector<Object> allEmployees;
-	JButton back;
+	private final Vector<Object> allEmployees;
+	private JButton back;
 	
 	public EmployeeSummaryDialog(Vector<Object> allEmployees) {
 		setTitle("Employee Summary");
@@ -47,7 +48,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 
 	}
 	// initialise container
-	public Container summaryPane() {
+	private Container summaryPane() {
 		JPanel summaryDialog = new JPanel(new MigLayout());
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JTable employeeTable;
@@ -58,8 +59,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
 		Vector<String> header = new Vector<String>();
 		// header names
-		String[] headerName = { "ID", "PPS Number", "Surname", "First Name", "Gender", "Department", "Salary",
-				"Full Time" };
+		String[] headerName = { "ID", "PPS Number", "Surname", "First Name", "Gender", "Department", "Salary", "Full Time" };
 		// column widths
 		int[] colWidth = { 15, 100, 120, 120, 50, 120, 80, 80 };
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -68,8 +68,11 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		for (int i = 0; i < headerName.length; i++) {
 			header.addElement(headerName[i]);
 		}// end for
-		// construnct table and choose table model for each column
+		
+		
+		// construct table and choose table model for each column 
 		tableModel = new DefaultTableModel(this.allEmployees, header) {
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int c) {
 				switch (c) {
 				case 0:
@@ -130,7 +133,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 			 JLabel label = (JLabel) c;
 			 label.setHorizontalAlignment(JLabel.RIGHT);
 			 // format salary column
-			value = format.format((Number) value);
+			value = format.format(value);
 
 			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		}// end getTableCellRendererComponent

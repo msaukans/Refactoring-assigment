@@ -15,6 +15,8 @@ public class RandomFile {
 	private RandomAccessFile input;
 	String errorFileProcessing = "Error processing file!";
 	String errorWritingFile = "Error writing to file!";
+	String errorClosingFile = "Error closing file!";
+	RandomAccessEmployeeRecord record;
 
 	// Create new file
 	public void createFile(String fileName) {
@@ -61,7 +63,7 @@ public class RandomFile {
 				output.close();
 		} // end try
 		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error closing file!");
+			JOptionPane.showMessageDialog(null, errorClosingFile);
 			System.exit(1);
 		} // end catch
 	} // end closeFile
@@ -70,9 +72,6 @@ public class RandomFile {
 	public long addRecords(Employee employeeToAdd) {
 		Employee newEmployee = employeeToAdd;
 		long currentRecordStart = 0;
-
-		// object to be written to file
-		RandomAccessEmployeeRecord record;
 
 		try // output values to file
 		{
@@ -95,7 +94,6 @@ public class RandomFile {
 	public void changeRecords(Employee newDetails, long byteToStart) {
 		long currentRecordStart = byteToStart;
 		// object to be written to file
-		RandomAccessEmployeeRecord record;
 		Employee oldDetails = newDetails;
 		try // output values to file
 		{
@@ -115,8 +113,6 @@ public class RandomFile {
 	public void deleteRecords(long byteToStart) {
 		long currentRecordStart = byteToStart;
 
-		// object to be written to file
-		RandomAccessEmployeeRecord record;
 
 		try // output values to file
 		{
@@ -148,7 +144,7 @@ public class RandomFile {
 				input.close();
 		} // end try
 		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error closing file!");
+			JOptionPane.showMessageDialog(null, errorClosingFile);
 			System.exit(1);
 		} // end catch
 	} // end method closeFile
@@ -217,7 +213,7 @@ public class RandomFile {
 
 	// Get object from file in specified position
 	public Employee readRecords(long byteToStart) {
-		Employee thisEmp;
+		Employee thisEmployee;
 		RandomAccessEmployeeRecord record = new RandomAccessEmployeeRecord();
 
 		try {// try to read file and get record
@@ -227,9 +223,9 @@ public class RandomFile {
 		catch (IOException ignored) {
 		}// end catch
 		
-		thisEmp = record;
+		thisEmployee = record;
 
-		return thisEmp;
+		return thisEmployee;
 	}// end readRecords
 
 	// Check if PPS Number already in use
@@ -283,4 +279,4 @@ public class RandomFile {
 
 		return someoneToDisplay;
 	}// end isSomeoneToDisplay
-}// end class RandomFile
+}

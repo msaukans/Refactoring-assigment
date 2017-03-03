@@ -47,7 +47,7 @@ class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		setVisible(true);
 
 	}
-	// initialise container
+	// Initialize container
 	private Container summaryPane() {
 		JPanel summaryDialog = new JPanel(new MigLayout());
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -72,7 +72,7 @@ class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		
 		// construct table and choose table model for each column 
 		tableModel = new DefaultTableModel(this.allEmployees, header) {
-			@SuppressWarnings({ "unchecked", "rawtypes" })
+			
 			public Class getColumnClass(int c) {
 				switch (c) {
 				case 0:
@@ -85,7 +85,7 @@ class EmployeeSummaryDialog extends JDialog implements ActionListener {
 					return Boolean.class;
 				default:
 					return String.class;
-				}// end switch
+				}
 			}// end getColumnClass
 		};
 
@@ -93,7 +93,7 @@ class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		// add header names to table
 		for (int i = 0; i < employeeTable.getColumnCount(); i++) {
 			employeeTable.getColumn(headerName[i]).setMinWidth(colWidth[i]);
-		}// end for
+		}
 		// set alignments
 		employeeTable.getColumnModel().getColumn(0).setCellRenderer(leftRenderer);
 		employeeTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
@@ -137,5 +137,5 @@ class EmployeeSummaryDialog extends JDialog implements ActionListener {
 
 			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		}// end getTableCellRendererComponent
-	}// DefaultTableCellRenderer
-}// end class EmployeeSummaryDialog
+	}
+}

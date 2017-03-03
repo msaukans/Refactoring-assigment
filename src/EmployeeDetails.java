@@ -86,6 +86,8 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 	final String[] department = { "", "Administration", "Production", "Transport", "Management" };
 	// full time combo box values
 	final String[] fullTime = { "", "Yes", "No" };
+	String swingVariables2 = "growx, pushx";
+	String swingVariables = "growx, pushx, wrap";
 
 	// initialize menu bar
 	private JMenuBar menuBar() {
@@ -150,7 +152,7 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 		JPanel searchPanel = new JPanel(new MigLayout());
 
 		searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
-		searchPanel.add(new JLabel("Search by ID:"), "growx, pushx");
+		searchPanel.add(new JLabel("Search by ID:"), swingVariables2);
 		searchPanel.add(searchByIdField = new JTextField(20), "width 200:200:200, growx, pushx");
 		searchByIdField.addActionListener(this);
 		searchByIdField.setDocument(new JTextFieldLimit(20));
@@ -160,7 +162,7 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 		searchId.addActionListener(this);
 		searchId.setToolTipText("Search Employee By ID");
 
-		searchPanel.add(new JLabel("Search by Surname:"), "growx, pushx");
+		searchPanel.add(new JLabel("Search by Surname:"), swingVariables2);
 		searchPanel.add(searchBySurnameField = new JTextField(20), "width 200:200:200, growx, pushx");
 		searchBySurnameField.addActionListener(this);
 		searchBySurnameField.setDocument(new JTextFieldLimit(20));
@@ -207,16 +209,16 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 	private JPanel buttonPanel() {
 		JPanel buttonPanel = new JPanel();
 
-		buttonPanel.add(add = new JButton("Add Record"), "growx, pushx");
+		buttonPanel.add(add = new JButton("Add Record"), swingVariables2);
 		add.addActionListener(this);
 		add.setToolTipText("Add new Employee Record");
-		buttonPanel.add(edit = new JButton("Edit Record"), "growx, pushx");
+		buttonPanel.add(edit = new JButton("Edit Record"), swingVariables2);
 		edit.addActionListener(this);
 		edit.setToolTipText("Edit current Employee");
-		buttonPanel.add(deleteButton = new JButton("Delete Record"), "growx, pushx, wrap");
+		buttonPanel.add(deleteButton = new JButton("Delete Record"), swingVariables);
 		deleteButton.addActionListener(this);
 		deleteButton.setToolTipText("Delete current Employee");
-		buttonPanel.add(displayAll = new JButton("List all Records"), "growx, pushx");
+		buttonPanel.add(displayAll = new JButton("List all Records"), swingVariables2);
 		displayAll.addActionListener(this);
 		displayAll.setToolTipText("List all Registered Employees");
 
@@ -228,34 +230,35 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 	private JPanel detailsPanel() {
 		JPanel empDetails = new JPanel(new MigLayout());
 		JPanel buttonPanel = new JPanel();
+		int textFieldLenght = 20;
 		JTextField field;
 
 		empDetails.setBorder(BorderFactory.createTitledBorder("Employee Details"));
 
-		empDetails.add(new JLabel("ID:"), "growx, pushx");
-		empDetails.add(idField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("ID:"), swingVariables2);
+		empDetails.add(idField = new JTextField(textFieldLenght), swingVariables);
 		idField.setEditable(false);
 
-		empDetails.add(new JLabel("PPS Number:"), "growx, pushx");
-		empDetails.add(ppsField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("PPS Number:"), swingVariables2);
+		empDetails.add(ppsField = new JTextField(textFieldLenght), swingVariables);
 
-		empDetails.add(new JLabel("Surname:"), "growx, pushx");
-		empDetails.add(surnameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Surname:"), swingVariables2);
+		empDetails.add(surnameField = new JTextField(textFieldLenght), swingVariables);
 
-		empDetails.add(new JLabel("First Name:"), "growx, pushx");
-		empDetails.add(firstNameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("First Name:"), swingVariables2);
+		empDetails.add(firstNameField = new JTextField(textFieldLenght), swingVariables);
 
-		empDetails.add(new JLabel("Gender:"), "growx, pushx");
-		empDetails.add(genderCombo = new JComboBox<String>(gender), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Gender:"), swingVariables2);
+		empDetails.add(genderCombo = new JComboBox<String>(gender), swingVariables);
 
-		empDetails.add(new JLabel("Department:"), "growx, pushx");
-		empDetails.add(departmentCombo = new JComboBox<String>(department), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Department:"), swingVariables2);
+		empDetails.add(departmentCombo = new JComboBox<String>(department), swingVariables);
 
-		empDetails.add(new JLabel("Salary:"), "growx, pushx");
-		empDetails.add(salaryField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Salary:"), swingVariables2);
+		empDetails.add(salaryField = new JTextField(textFieldLenght), swingVariables);
 
-		empDetails.add(new JLabel("Full Time:"), "growx, pushx");
-		empDetails.add(fullTimeCombo = new JComboBox<String>(fullTime), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Full Time:"), swingVariables2);
+		empDetails.add(fullTimeCombo = new JComboBox<String>(fullTime), swingVariables);
 
 		buttonPanel.add(saveChange = new JButton("Save"));
 		saveChange.addActionListener(this);
@@ -277,7 +280,7 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 				if (field == ppsField)
 					field.setDocument(new JTextFieldLimit(9));
 				else
-					field.setDocument(new JTextFieldLimit(20));
+					field.setDocument(new JTextFieldLimit(textFieldLenght));
 				field.getDocument().addDocumentListener(this);
 			} // end if
 			else if (empDetails.getComponent(i) instanceof JComboBox) {
@@ -305,7 +308,7 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 		searchByIdField.setText("");
 		searchBySurnameField.setText("");
 		// if Employee is null or ID is 0 do nothing else display Employee details
-		if (thisEmployee == null || thisEmployee.getEmployeeId() == 0) {//moved if else statement
+		if (thisEmployee == null || thisEmployee.getEmployeeId() == 0) {//moved if else statement to shorten code
 			//TODO empty method...
 		} else {
 			// find corresponding gender combo box value to current employee
@@ -496,8 +499,7 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 			} // end else if
 			else {
 				nextRecord();// look for next record
-				// loop until Employee found or until all Employees have been
-				// checked
+				// loop until Employee found or until all Employees have been checked
 				while (!firstSurname.trim().equalsIgnoreCase(currentEmployee.getSurname().trim())) {
 					// if found break from loop and display Employee details
 					// else look for next record
@@ -520,8 +522,7 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 	// get next free ID from Employees in the file
 	public int getNextFreeId() {
 		int nextFreeId = 0;
-		// if file is empty or all records are empty start with ID 1 else look
-		// for last active record
+		// if file is empty or all records are empty start with ID 1 else look for last active record
 		if (file.length() == 0 || !isSomeoneToDisplay())
 			nextFreeId++;
 		else {
@@ -615,15 +616,15 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 			// remove euro sign from salary text field
 			salaryField.setText(fieldFormat.format(currentEmployee.getSalary()));
 			change = false;
-			setEnabled(true);// enable text fields for editing
-		} // end if
-	}// end editDetails
+			setEnabled(true);
+		}
+	}
 
 	// ignore changes and set text field unenabled
 	private void cancelChange() {
 		setEnabled(false);
 		displayRecords(currentEmployee);
-	}// end cancelChange
+	}
 
 	// check if any of records in file is active - ID is not 0
 	private boolean isSomeoneToDisplay() {
@@ -632,7 +633,7 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 		application.openReadFile(file.getAbsolutePath());
 		// check if any of records in file is active - ID is not 0
 		someoneToDisplay = application.isSomeoneToDisplay();
-		application.closeReadFile();// close file for reading
+		application.closeReadFile();
 		// if no records found clear all text fields and display message
 		if (!someoneToDisplay) {
 			currentEmployee = null;
@@ -684,7 +685,7 @@ class EmployeeDetails extends JFrame implements ActionListener, ItemListener, Do
 				&& fileName.toString().charAt(length - 2) == 'a' && fileName.toString().charAt(length - 1) == 't')
 			checkFile = true;
 		return checkFile;
-	}// end checkFileName
+	}
 
 	// check if any changes text field where made
 	private boolean checkForChanges() {

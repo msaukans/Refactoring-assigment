@@ -27,6 +27,7 @@ class SearchByIdDialog extends JDialog implements ActionListener {
 	private JButton search;
 	private JButton cancel;
 	private JTextField searchField;
+	
 	// constructor for SearchByIdDialog 
 	public SearchByIdDialog(EmployeeDetails parent) {
 		setTitle("Search by Surname");
@@ -42,7 +43,7 @@ class SearchByIdDialog extends JDialog implements ActionListener {
 		setSize(500, 190);
 		setLocation(350, 250);
 		setVisible(true);
-	}// end SearchByIdDialog
+	}
 	
 	// initialize search container
 	private Container searchPane() {
@@ -71,7 +72,7 @@ class SearchByIdDialog extends JDialog implements ActionListener {
 		searchPanel.add(buttonPanel);
 
 		return searchPanel;
-	}// end searchPane
+	}
 
 	// action listener for save and cancel button
 	public void actionPerformed(ActionEvent e) {
@@ -95,4 +96,4 @@ class SearchByIdDialog extends JDialog implements ActionListener {
 		else if (e.getSource() == cancel)
 			dispose();
 	}// end actionPerformed
-}// end class searchByIdDialog
+}

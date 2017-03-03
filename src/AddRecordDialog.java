@@ -34,6 +34,7 @@ class AddRecordDialog extends JDialog implements ActionListener {
 	private JButton save;
 	private JButton cancel;
 	private final EmployeeDetails parent;
+	
 	// constructor for add record dialog
 	public AddRecordDialog(EmployeeDetails parent) {
 		setTitle("Add Record");
@@ -50,7 +51,7 @@ class AddRecordDialog extends JDialog implements ActionListener {
 		setSize(500, 370);
 		setLocation(350, 250);
 		setVisible(true);
-	}// end AddRecordDialog
+	}
 
 	// initialize dialog container
 	private Container dialogPane() {
@@ -134,7 +135,7 @@ class AddRecordDialog extends JDialog implements ActionListener {
 	// check for input in text fields
 	private boolean checkInput() {
 		boolean valid = true;	
-		Color color = new Color(255,150,150);//replaced with single variable instead of changing the color in each line to same color
+		Color color = new Color(255,150,150);
 		// if any of inputs are in wrong format, color text field and display message
 		if (ppsField.getText().equals("")) {
 			ppsField.setBackground(color);
@@ -179,7 +180,7 @@ class AddRecordDialog extends JDialog implements ActionListener {
 		return valid;
 	}// end checkInput
 
-	// set text field to white color
+	
 	private void setToWhite() {
 		ppsField.setBackground(Color.WHITE);
 		surnameField.setBackground(Color.WHITE);
@@ -188,7 +189,7 @@ class AddRecordDialog extends JDialog implements ActionListener {
 		genderCombo.setBackground(Color.WHITE);
 		departmentCombo.setBackground(Color.WHITE);
 		fullTimeCombo.setBackground(Color.WHITE);
-	}// end setToWhite
+	}
 
 	// action performed
 	public void actionPerformed(ActionEvent e) {
@@ -209,4 +210,4 @@ class AddRecordDialog extends JDialog implements ActionListener {
 		else if (e.getSource() == cancel)
 			dispose();// dispose dialog
 	}// end actionPerformed
-}// end class AddRecordDialog
+}
